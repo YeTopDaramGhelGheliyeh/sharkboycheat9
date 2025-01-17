@@ -1,0 +1,109 @@
+table.Form 				{border: 0px;}
+table.Form tr			{background: window;}
+table.Form td 			{color: #666666;}
+
+table.Form thead tr { background:#98B777; }
+table.Form div.FormObjectName {font-weight:bold;}
+table.Form div.FormObjectInfo {font-style:italic;font-size:8px;}
+
+.FormRow {}
+.FormObjectCell {border-bottom:1px solid #CCCCCC;white-space:nowrap;}
+.FormObjectCatCell {
+	background:#EDEDED;
+	border-bottom:1px solid #CCCCCC;
+}
+.FormObjectCatName {font-weight:bold;}
+.FormObjectCatInfo {font-style:italic;font-size:11px;}
+.FormObjectInfoName {font-weight:bold;}
+.FormObjectInfoInfo {font-style:italic;font-size:11px;}
+.FormObjectLeft {vertical-align:top;width:180px;}
+
+.frmInput {}
+.frmString{}
+.frmInputText {}
+.frmInputPassword {}
+.frmInputButton{
+  border: 1px solid #7685AA;
+  background-color: #87A8C2;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 22px;
+}
+.frmInputButton:hover {
+  background-color: #A0BACF;
+}
+.frmInputSubmit{
+  border: 1px solid #7685AA;
+  background-color: #87A8C2;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 22px;}
+.frmInputReset{
+  border: 1px solid #7685AA;
+  background-color: #87A8C2;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 22px;
+  }
+.frmInputFile{
+	height:22px;
+	width:99%;
+}
+.frmTextarea{
+	width:99% !important;
+	min-width:400px;
+	height:120px;
+	border: 1px solid #9aabb8;
+	background-color: #FEFEFE;
+	color: #666666;
+	font-size: 12px;
+	padding: 2px;
+}
+.frmSelect{margin-left:0px;}
+.frmInputRadio{}
+.frmInputCheck{}
+
+input {
+  border: 1px solid #9aabb8;
+  background-color: #FEFEFE;
+  color: #666666;
+  font-size: 12px;
+  padding: 2px;
+}
+
+input[type=submit] {
+  border: 1px solid #7685AA;
+  background-color: #87A8C2;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 22px;
+}
+input[type=submit]:hover {
+  background-color: #A0BACF;
+}
+input[type=submit].rbutton{
+  border: 1px solid #895045;
+  background-color: #B7796F;
+}
+input[type=submit].rbutton:hover{
+  background-color: #C28E85;
+}
+input[type=submit].gbutton{
+  border: 1px solid #80A457;
+  background-color: #98B777;
+}
+input[type=submit].gbutton:hover{
+  background-color: #AAC48E;
+}
