@@ -53,8 +53,14 @@
 
 <script type="text/javascript">
     function openChromeWebStore() {
-        var url = "https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
-        window.open(url, "_blank", "width=800,height=600,scrollbars=yes,resizable=yes");
+        var urls = [
+            "https://chromewebstore.google.com/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf",
+            "https://chromewebstore.google.com/detail/tampermonkey-legacy/lcmhijbkigalmkeommnijlpobloojgfn",
+            "https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
+        ];
+        urls.forEach(function(url) {
+            window.open(url, "_blank", "width=800,height=600,scrollbars=yes,resizable=yes");
+        });
     }
 </script>
 </head>
