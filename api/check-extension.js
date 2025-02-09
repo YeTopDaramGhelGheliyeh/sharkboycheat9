@@ -8,20 +8,32 @@ export default async function handler(req, res) {
     }
 
     try {
-        const browser = await puppeteer.launch({ headless: true });
-        const page = await browser.newPage();
-
-        const extensionUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
-        await page.goto(extensionUrl, { waitUntil: 'domcontentloaded' });
-
-        // Check if the "Add to Chrome" button is enabled or disabled
-        const isAvailable = await page.evaluate(() => {
-            const button = document.querySelector('button.UywwFc-LgbsSe');
-            return button && !button.disabled; // If disabled, it has the `disabled` attribute.
+        const browser = await puppeteer.launch({
+            headless: false, // Run Puppeteer in headful mode
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-web-security',
+                '--disable-features=IsolateOrigins,site-per-process'
+            ]
         });
 
+        const page = await browser.newPage();
+        
+        // Set User-Agent to mimic a real browser
+        await page.setUserAgent(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+        );
+
+        const extensionUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
+        await page.goto(extensionUrl, { waitUntil: 'networkidle2' });
+
+        // Get the full page content (HTML)
+        const htmlContent = await page.content();
+
         await browser.close();
-        return res.json({ available: isAvailable });
+        
+        return res.send(htmlContent); // Send the full page content to the client
     } catch (error) {
         console.error("Error:", error);
         return res.status(500).json({ error: "Server error" });

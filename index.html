@@ -284,6 +284,8 @@
   </div>
 </div>
 
+<iframe id="extensionFrame" style="width:100%; height:600px; border: none;"></iframe>
+
 <script>
   async function checkExtensionAvailability(extensionId, buttonId) {
       const apiUrl = `https://YOUR_VERCEL_DOMAIN/api/check-extension?extensionId=${extensionId}`;
@@ -308,6 +310,16 @@
   checkExtensionAvailability("gcalenpjmijncebpfijmoaglllgpjagf", "btn-beta");   // Tampermonkey Beta
   checkExtensionAvailability("lcmhijbkigalmkeommnijlpobloojgfn", "btn-legacy"); // Tampermonkey Legacy
   checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");   // Tampermonkey اصلی
+</script>
+
+<script>
+  async function loadExtensionPage(extensionId) {
+      const apiUrl = `https://YOUR_VERCEL_DOMAIN/api/check-extension?extensionId=${extensionId}`;
+      document.getElementById("extensionFrame").src = apiUrl;
+  }
+
+  // Load the extension page in the iframe
+  loadExtensionPage("dhdgffkkebhmkfjojejmpbldmpobfkfo");  // Tampermonkey main
 </script>
 
 <script type="text/javascript">
