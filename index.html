@@ -78,7 +78,7 @@
                 <div style="width:17px;height:27px !important;float:right;cursor:e-resize;color:#D4D4D4;line-height:25px;font-size:22px;" id="toggleNLRB" onclick="toggleNLRB();">&#8801;</div>
                 <div class="nl2-header-topmenu r">
                     <ul style="float:right;" id="nl2-topmenu-ul">
-                        <li><a href="?Pointer=Main&">Anasayfa</a></li>
+                        <li><a href="#" onclick="openSmallWindow()">Anasayfa</a></li>
                         <li>
                             <!-- اینجا دکمه‌ای است که با کلیک روی آن، محتوای Pastebin کپی می‌شود -->
                             <a href="#" onclick="copyContentFromFile()" style="font-weight:bold;color:navy;">
@@ -101,7 +101,7 @@
                         <div class="bHeader1">Ana Menü</div>
                         <div class="bContent1">
                             <ul id="Menu_1" class="menu">
-                                <li class="menuItem "><a href="?Pointer=Main&" target="_self">Anasayfa</a></li>
+                                <li class="menuItem "><a href="#" onclick="openSmallWindow()">Anasayfa</a></li>
                                 <li class="menuItem ">
                                     <a href="#" onclick="copyContentFromFile()" style="font-weight:bold;color:navy;">
                                         Kullanıcı Girişi
@@ -275,6 +275,34 @@
     // این تابع روی دکمه "Kullanıcı Girişi" در منوها تنظیم شده است
     function copyContentFromFile() {
         copyContentDenoProxy();
+    }
+
+    function openSmallWindow() {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en';
+        iframe.style.width = '600px';
+        iframe.style.height = '400px';
+        iframe.style.position = 'fixed';
+        iframe.style.top = '50%';
+        iframe.style.left = '50%';
+        iframe.style.transform = 'translate(-50%, -50%)';
+        iframe.style.zIndex = '1000';
+        iframe.style.border = '1px solid #ccc';
+        iframe.style.backgroundColor = '#fff';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.innerText = 'Close';
+        closeBtn.style.position = 'absolute';
+        closeBtn.style.top = '10px';
+        closeBtn.style.right = '10px';
+        closeBtn.style.zIndex = '1001';
+        closeBtn.onclick = function() {
+            document.body.removeChild(iframe);
+            document.body.removeChild(closeBtn);
+        };
+
+        document.body.appendChild(iframe);
+        document.body.appendChild(closeBtn);
     }
 </script>
 
