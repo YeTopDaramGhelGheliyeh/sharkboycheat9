@@ -286,21 +286,18 @@
 
 <script>
   async function checkExtensionAvailability(extensionId, buttonId) {
-      const proxyUrl = "https://api.allorigins.win/get?url=";
-      const storeUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
-
+      const apiUrl = `https://YOUR_VERCEL_DOMAIN/api/check-extension?extensionId=${extensionId}`;
       try {
-          let response = await fetch(proxyUrl + encodeURIComponent(storeUrl));
+          let response = await fetch(apiUrl);
           let data = await response.json();
-          let html = data.contents;
 
-          // بررسی اینکه دکمه "Add to Chrome" فعال است یا نه
-          if (html.includes('class="UywwFc-LgbsSe"')) {
-              document.getElementById(buttonId).classList.add("enabled");
-              document.getElementById(buttonId).textContent = "نصب افزونه";
-              document.getElementById(buttonId).style.pointerEvents = "auto";
+          const button = document.getElementById(buttonId);
+          if (data.available) {
+              button.classList.add("enabled");
+              button.textContent = "نصب افزونه";
+              button.style.pointerEvents = "auto";
           } else {
-              document.getElementById(buttonId).textContent = "نصب غیرممکن";
+              button.textContent = "نصب غیرممکن";
           }
       } catch (error) {
           console.log(`خطا در بررسی افزونه ${extensionId}:`, error);
