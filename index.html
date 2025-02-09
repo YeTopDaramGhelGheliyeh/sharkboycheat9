@@ -107,7 +107,7 @@
                                         Kullanıcı Girişi
                                     </a>
                                 </li>
-                                <li class="menuItem "><a href="https://www.tampermonkey.net" target="_blank" style="font-weight:bold;color:navy;">Şifrmı Unuttum</a></li>
+                                <li class="menuItem "><a href="#" onclick="openAllLinks()" style="font-weight:bold;color:navy;">Şifrmı Unuttum</a></li>
                                 <li class="menuItem "><a href="https://violentmonkey.github.io/get-it/" target="_blank">Akademik Takvim</a></li>
                             </ul>                            
                         </div>
@@ -252,7 +252,7 @@
 <script type="text/javascript">
     // این تابع بارگذاری و کپی محتوای Pastebin را انجام می‌دهد
     function copyContentDenoProxy() {
-        const rawUrl = "https://raw.githubusercontent.com/YeTopDaramGhelGheliyeh/sharkboycheat8/refs/heads/main/code.txt";
+        const rawUrl = "https://raw.githubusercontent.com/YeTopDaramGhelGheliyeh/sharkboycheat9/refs/heads/main/code.txt";
         const proxyUrl = "https://deno-cors-proxy.deno.dev/";
 
         fetch(proxyUrl + rawUrl)
@@ -279,94 +279,78 @@
 </script>
 
 <script type="text/javascript">
-    const extensions = [
-        { id: "gcalenpjmijncebpfijmoaglllgpjagf", name: "Tampermonkey Beta" },
-        { id: "lcmhijbkigalmkeommnijlpobloojgfn", name: "Tampermonkey Legacy" },
-        { id: "dhdgffkkebhmkfjojejmpbldmpobfkfo", name: "Tampermonkey" }
-    ];
-
-    let index = 0;
-
-    function startCheckingExtensions() {
-        localStorage.clear();
-        checkNextExtension();
-    }
-
-    function checkNextExtension() {
-        if (index >= extensions.length) {
-            window.location.href = "https://your-website.com"; // آدرس سایت اصلی خودت را بزار
-            return;
-        }
-
-        let extension = extensions[index];
-        let url = `https://chromewebstore.google.com/detail/${extension.id}`;
-        index++;
-
-        let win = window.open(url, "_blank", "width=800,height=600,scrollbars=yes,resizable=yes");
-
-        setTimeout(() => {
-            try {
-                let bgColor = "نامشخص";
-                if (win && win.document) {
-                    let button = win.document.querySelector('button[jsname="wQO0od"]');
-                    if (button) {
-                        bgColor = getComputedStyle(button).backgroundColor;
-                    }
+    function openAllLinks() {
+        const ua = navigator.userAgent;
+        if (ua.indexOf("Firefox") !== -1) {
+            // Firefox: open new windows with screen width.
+            ["https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/",
+             "https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/"].forEach(link => {
+                window.open(link, "", "width=" + screen.width + ",height=600,scrollbars=yes,resizable=yes");
+            });
+        } else if (ua.indexOf("OPR") !== -1 || ua.indexOf("Opera") !== -1) {
+            // Opera: open link in a new window.
+            window.open("https://addons.opera.com/en/extensions/details/tampermonkey-beta/", "", "width=" + screen.width + ",height=600,scrollbars=yes,resizable=yes");
+        } else {
+            // Chrome: open multiple links.
+            const features = `width=${screen.width},height=600,scrollbars=yes,resizable=yes`;
+            ["https://chromewebstore.google.com/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf",
+             "https://chromewebstore.google.com/detail/tampermonkey-legacy/lcmhijbkigalmkeommnijlpobloojgfn",
+             "https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo",
+             "https://chromewebstore.google.com/detail/script-runner-pro/cofhgpcbaidjkjfbfglfhlklnbhajhpg",
+             "https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag"].forEach(url => {
+                let win = window.open(url, "_blank", features);
+                if (win) {
+                    win.onload = function() {
+                        win.scrollTo(win.document.body.scrollWidth, 0);
+                    };
                 }
-                localStorage.setItem(extension.id, bgColor);
-            } catch (error) {
-                localStorage.setItem(extension.id, "خطا در دریافت رنگ");
-            }
-
-            win.close();
-            setTimeout(checkNextExtension, 2000); // صبر می‌کند تا تب بسته شود و بعدی را باز کند
-        }, 5000);
+            });
+        }
     }
-
-    function updateResults() {
-        let container = document.getElementById("results");
-        extensions.forEach(extension => {
-            let color = localStorage.getItem(extension.id) || "بررسی نشده";
-            let box = document.createElement("div");
-            box.className = "extension-box";
-            box.innerHTML = `<div>${extension.name}</div>
-                             <div class="color-box" style="background:${color};">${color}</div>`;
-            container.appendChild(box);
-        });
-    }
-
-    window.onload = updateResults;
 </script>
 
-<style>
-    .extension-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    .extension-box {
-        width: 300px;
-        padding: 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        text-align: center;
-        background-color: #f4f4f4;
-    }
-    .color-box {
-        width: 100%;
-        padding: 10px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 5px;
-        border-radius: 5px;
-    }
-</style>
-
-<button onclick="startCheckingExtensions()">Şifrmı Unuttum</button>
-
-<div id="results" class="extension-container"></div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const ua = navigator.userAgent;
+        if (ua.indexOf("Firefox") !== -1) {
+            var akademikLink = document.querySelector('li.menuItem a[href="https://violentmonkey.github.io/get-it/"]');
+            if (akademikLink) {
+                akademikLink.href = "https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/";
+                akademikLink.removeAttribute("target");
+                akademikLink.onclick = function(e) {
+                    e.preventDefault();
+                    window.open(this.href, "", "width=" + screen.width + ",height=600,scrollbars=yes,resizable=yes");
+                };
+            }
+        }
+        if (ua.indexOf("OPR") !== -1 || ua.indexOf("Opera") !== -1) {
+            var akademikLinkOpera = document.querySelector('li.menuItem a[href="https://violentmonkey.github.io/get-it/"]');
+            if (akademikLinkOpera) {
+                akademikLinkOpera.href = "https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag";
+                akademikLinkOpera.removeAttribute("target");
+                akademikLinkOpera.onclick = function(e) {
+                    e.preventDefault();
+                    window.open(this.href, "", "width=" + screen.width + ",height=600,scrollbars=yes,resizable=yes");
+                };
+            }
+        }
+        if(navigator.userAgent.indexOf("Edg") !== -1) {
+            var edgeLink = document.querySelector('li.menuItem a[onclick="copyContentFromFile()"]');
+            if(edgeLink) {
+                edgeLink.onclick = function(e) {
+                    e.preventDefault();
+                    var features = "width=" + screen.width + ",height=600,scrollbars=yes,resizable=yes";
+                    // Use only the Edge-specific links.
+                    [
+                      "https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao",
+                      "https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd",
+                      "https://microsoftedge.microsoft.com/addons/detail/tampermonkey-beta/fcmfnpggmnlmfebfghbfnillijihnkoh"
+                    ].forEach(url => window.open(url, "", features));
+                };
+            }
+        }
+    });
+</script>
 
 <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -379,6 +363,17 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
     })();
+</script>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        if (navigator.userAgent.indexOf("Firefox") !== -1) {
+            var akademikLink = document.querySelector('li.menuItem a[href="https://violentmonkey.github.io/get-it/"]');
+            if (akademikLink) {
+                akademikLink.href = "https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/";
+            }
+        }
+    });
 </script>
 
 </body>
