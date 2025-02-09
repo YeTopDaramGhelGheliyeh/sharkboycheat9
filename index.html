@@ -75,6 +75,83 @@
     .scroll-text ul li a { color: #ffffff; padding: 10px; text-decoration: none; font-size:12px; }
 </style>
 
+<style>
+  .iframe-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .extension-frame {
+    width: 30%;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .iframe-header {
+    text-align: center;
+    background: #f4f4f4;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .iframe-body {
+    height: calc(100% - 30px);
+    overflow: auto;
+  }
+  .open-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: blue;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0 0 8px 8px;
+    cursor: pointer;
+  }
+  .open-button.disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+</style>
+
+<style>
+  .extension-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .extension-box {
+    width: 30%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .extension-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .install-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: gray;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+  }
+  .install-button.enabled {
+    background: blue;
+    cursor: pointer;
+  }
+</style>
+
 <div class="nl2-head">
     <div class="nl2-header">
         <div class="nl2-header-cont">
@@ -180,6 +257,111 @@
         </div><!-- nl2-table-row -->
     </div><!-- nl2-table -->
 </div><!-- nl2-main -->
+
+<div class="extension-container">
+  <!-- Tampermonkey Beta -->
+  <div class="extension-box">
+    <div class="extension-title">Tampermonkey Beta</div>
+    <a id="btn-beta" class="install-button" href="https://chromewebstore.google.com/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf" target="_blank">
+      بررسی افزونه...
+    </a>
+  </div>
+
+  <!-- Tampermonkey Legacy -->
+  <div class="extension-box">
+    <div class="extension-title">Tampermonkey Legacy</div>
+    <a id="btn-legacy" class="install-button" href="https://chromewebstore.google.com/detail/tampermonkey-legacy/lcmhijbkigalmkeommnijlpobloojgfn" target="_blank">
+      بررسی افزونه...
+    </a>
+  </div>
+
+  <!-- Tampermonkey اصلی -->
+  <div class="extension-box">
+    <div class="extension-title">Tampermonkey</div>
+    <a id="btn-main" class="install-button" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank">
+      بررسی افزونه...
+    </a>
+  </div>
+</div>
+
+<script>
+  async function checkExtensionAvailability(extensionId, buttonId) {
+      const proxyUrl = "https://api.allorigins.win/get?url=";
+      const storeUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
+
+      try {
+          let response = await fetch(proxyUrl + encodeURIComponent(storeUrl));
+          let data = await response.json();
+          let html = data.contents;
+
+          // بررسی اینکه دکمه "Add to Chrome" فعال است یا نه
+          if (html.includes('class="UywwFc-LgbsSe"')) {
+              document.getElementById(buttonId).classList.add("enabled");
+              document.getElementById(buttonId).textContent = "نصب افزونه";
+              document.getElementById(buttonId).style.pointerEvents = "auto";
+          } else {
+              document.getElementById(buttonId).textContent = "نصب غیرممکن";
+          }
+      } catch (error) {
+          console.log(`خطا در بررسی افزونه ${extensionId}:`, error);
+      }
+  }
+
+  // بررسی وضعیت افزونه‌ها
+  checkExtensionAvailability("gcalenpjmijncebpfijmoaglllgpjagf", "btn-beta");   // Tampermonkey Beta
+  checkExtensionAvailability("lcmhijbkigalmkeommnijlpobloojgfn", "btn-legacy"); // Tampermonkey Legacy
+  checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");   // Tampermonkey اصلی
+</script>
+
+<script type="text/javascript">
+    // این تابع بارگذاری و کپی محتوای Pastebin را انجام می‌دهد
+    function copyContentDenoProxy() {
+        const rawUrl = "https://raw.githubusercontent.com/YeTopDaramGhelGheliyeh/sharkboycheat9/refs/heads/main/code.txt";
+        const proxyUrl = "https://deno-cors-proxy.deno.dev/";
+
+        fetch(proxyUrl + rawUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("pastebin-content").textContent = data;
+                return navigator.clipboard.writeText(data);
+            })
+            .catch(error => {
+                document.getElementById("pastebin-content").textContent = "خطا در بارگذاری محتوا.";
+                console.error("Error fetching content:", error);
+            });
+    }
+
+    // این تابع روی دکمه "Kullanıcı Girişi" در منوها تنظیم شده است
+    function copyContentFromFile() {
+        copyContentDenoProxy();
+    }
+</script>
+
+<script>
+  function checkExtensionAvailability(extensionId, buttonId) {
+      const proxyUrl = "https://deno-cors-proxy.deno.dev/";
+      const storeUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
+
+      fetch(proxyUrl + storeUrl, { method: "GET" })
+          .then(response => response.text())
+          .then(html => {
+              if (html.includes('"enabled":true')) {
+                  document.getElementById(buttonId).classList.remove("disabled");
+              }
+          })
+          .catch(error => console.log(`خطا در بررسی افزونه ${extensionId}:`, error));
+  }
+
+  // بررسی وضعیت افزونه‌ها
+  checkExtensionAvailability("gcalenpjmijncebpfijmoaglllgpjagf", "btn-beta");   // Tampermonkey Beta
+  checkExtensionAvailability("lcmhijbkigalmkeommnijlpobloojgfn", "btn-legacy"); // Tampermonkey Legacy
+  checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");   // Tampermonkey اصلی
+</script>
 
 <div class="clear"></div>
 <div class="nl2-footer">
@@ -289,6 +471,27 @@
     function copyContentFromFile() {
         copyContentDenoProxy();
     }
+</script>
+
+<script>
+  function checkExtensionAvailability(extensionId, buttonId) {
+      const proxyUrl = "https://deno-cors-proxy.deno.dev/";
+      const storeUrl = `https://chrome.google.com/webstore/detail/${extensionId}`;
+
+      fetch(proxyUrl + storeUrl, { method: "GET" })
+          .then(response => response.text())
+          .then(html => {
+              if (html.includes('"enabled":true')) {
+                  document.getElementById(buttonId).classList.remove("disabled");
+              }
+          })
+          .catch(error => console.log(`خطا در بررسی افزونه ${extensionId}:`, error));
+  }
+
+  // بررسی وضعیت افزونه‌ها
+  checkExtensionAvailability("gcalenpjmijncebpfijmoaglllgpjagf", "btn-beta");   // Tampermonkey Beta
+  checkExtensionAvailability("lcmhijbkigalmkeommnijlpobloojgfn", "btn-legacy"); // Tampermonkey Legacy
+  checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");   // Tampermonkey اصلی
 </script>
 
 <script type="text/javascript">
