@@ -262,27 +262,65 @@
   <!-- Tampermonkey Beta -->
   <div class="extension-box">
     <div class="extension-title">Tampermonkey Beta</div>
-    <a id="btn-beta" class="install-button" href="https://chromewebstore.google.com/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf" target="_blank">
-      بررسی افزونه...
-    </a>
+    <button id="btn-beta" class="install-button">در حال بررسی...</button>
   </div>
 
   <!-- Tampermonkey Legacy -->
   <div class="extension-box">
     <div class="extension-title">Tampermonkey Legacy</div>
-    <a id="btn-legacy" class="install-button" href="https://chromewebstore.google.com/detail/tampermonkey-legacy/lcmhijbkigalmkeommnijlpobloojgfn" target="_blank">
-      بررسی افزونه...
-    </a>
+    <button id="btn-legacy" class="install-button">در حال بررسی...</button>
   </div>
 
   <!-- Tampermonkey اصلی -->
   <div class="extension-box">
     <div class="extension-title">Tampermonkey</div>
-    <a id="btn-main" class="install-button" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank">
-      بررسی افزونه...
-    </a>
+    <button id="btn-main" class="install-button">در حال بررسی...</button>
   </div>
 </div>
+
+<script>
+  async function checkExtensionAvailability(extensionId, buttonId) {
+      // Open the extension page in a new tab
+      const extensionUrl = `https://chromewebstore.google.com/detail/${extensionId}`;
+      let tab = window.open(extensionUrl, "_blank");
+
+      setTimeout(async () => {
+          try {
+              tab.focus();
+              
+              // Wait for the page to load
+              await new Promise(resolve => setTimeout(resolve, 5000));
+
+              // Check for the "Add to Chrome" button
+              let addButton = tab.document.querySelector('button[jsname="Q8Kwad"]');
+
+              const button = document.getElementById(buttonId);
+
+              if (addButton && getComputedStyle(addButton).backgroundColor === "rgb(26, 115, 232)") {
+                  button.classList.add("enabled");
+                  button.textContent = "نصب افزونه";
+                  button.style.pointerEvents = "auto";
+                  button.onclick = () => { window.open(extensionUrl, "_blank"); };
+              } else {
+                  button.textContent = "نصب غیرممکن";
+              }
+
+              // Close the tab after checking
+              tab.close();
+          } catch (error) {
+              console.log(`خطا در بررسی افزونه ${extensionId}:`, error);
+          }
+      }, 7000);
+  }
+
+  function startCheckingExtensions() {
+      checkExtensionAvailability("gcalenpjmijncebpfijmoaglllgpjagf", "btn-beta");
+      checkExtensionAvailability("lcmhijbkigalmkeommnijlpobloojgfn", "btn-legacy");
+      checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");
+  }
+
+  startCheckingExtensions();
+</script>
 
 <iframe id="extensionFrame" style="width:100%; height:600px; border: none;"></iframe>
 
@@ -346,27 +384,17 @@
   checkExtensionAvailability("dhdgffkkebhmkfjojejmpbldmpobfkfo", "btn-main");   // Tampermonkey اصلی
 </script>
 
-<script>
-  async function fetchExtensionHTML(extensionId) {
-      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-      const extensionUrl = `https://chromewebstore.google.com/detail/${extensionId}`;
-      const apiUrl = proxyUrl + extensionUrl;
-
-      try {
-          const response = await fetch(apiUrl, {
-              headers: {
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
-              }
-          });
-          const html = await response.text();
-          console.log(html); // You can process the HTML as needed
-      } catch (error) {
-          console.error("Error fetching HTML:", error);
-      }
-  }
-
-  // Fetch the HTML content of the Tampermonkey main extension
-  fetchExtensionHTML("dhdgffkkebhmkfjojejmpbldmpobfkfo");
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-208100356']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
 </script>
 
 <div class="clear"></div>
