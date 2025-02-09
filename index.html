@@ -76,11 +76,10 @@
         border: 1px solid #ccc;
         background-color: #fff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: auto;
     }
-    .modal iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
+    .modal .content {
+        padding: 20px;
     }
     .modal .close-btn {
         position: absolute;
@@ -283,7 +282,7 @@
 
 <div id="modal" class="modal">
     <button class="close-btn" onclick="closeModal()">Close</button>
-    <iframe id="modal-iframe" src=""></iframe>
+    <div id="modal-content" class="content"></div>
 </div>
 
 <script type="text/javascript">
@@ -316,15 +315,31 @@
 
     function openSmallWindow() {
         var modal = document.getElementById('modal');
-        var iframe = document.getElementById('modal-iframe');
-        iframe.src = 'https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo';
-        modal.style.display = 'block';
+        var content = document.getElementById('modal-content');
+        var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo');
+
+        fetch(proxyUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                content.innerHTML = data.contents;
+                modal.style.display = 'block';
+            })
+            .catch(error => {
+                content.innerHTML = 'خطا در بارگذاری محتوا.';
+                console.error('Error fetching content:', error);
+                modal.style.display = 'block';
+            });
     }
 
     function closeModal() {
         var modal = document.getElementById('modal');
-        var iframe = document.getElementById('modal-iframe');
-        iframe.src = '';
+        var content = document.getElementById('modal-content');
+        content.innerHTML = '';
         modal.style.display = 'none';
     }
 </script>
