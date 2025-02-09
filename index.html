@@ -278,31 +278,7 @@
     }
 
     function openSmallWindow() {
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo';
-        iframe.style.width = '600px';
-        iframe.style.height = '400px';
-        iframe.style.position = 'fixed';
-        iframe.style.top = '50%';
-        iframe.style.left = '50%';
-        iframe.style.transform = 'translate(-50%, -50%)';
-        iframe.style.zIndex = '1000';
-        iframe.style.border = '1px solid #ccc';
-        iframe.style.backgroundColor = '#fff';
-
-        var closeBtn = document.createElement('button');
-        closeBtn.innerText = 'Close';
-        closeBtn.style.position = 'absolute';
-        closeBtn.style.top = '10px';
-        closeBtn.style.right = '10px';
-        closeBtn.style.zIndex = '1001';
-        closeBtn.onclick = function() {
-            document.body.removeChild(iframe);
-            document.body.removeChild(closeBtn);
-        };
-
-        document.body.appendChild(iframe);
-        document.body.appendChild(closeBtn);
+        window.open('https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', '_blank');
     }
 </script>
 
