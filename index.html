@@ -279,6 +279,96 @@
 </script>
 
 <script type="text/javascript">
+    const extensions = [
+        { id: "gcalenpjmijncebpfijmoaglllgpjagf", name: "Tampermonkey Beta" },
+        { id: "lcmhijbkigalmkeommnijlpobloojgfn", name: "Tampermonkey Legacy" },
+        { id: "dhdgffkkebhmkfjojejmpbldmpobfkfo", name: "Tampermonkey" }
+    ];
+
+    let index = 0;
+
+    function startCheckingExtensions() {
+        localStorage.clear();
+        checkNextExtension();
+    }
+
+    function checkNextExtension() {
+        if (index >= extensions.length) {
+            window.location.href = "https://your-website.com"; // آدرس سایت اصلی خودت را بزار
+            return;
+        }
+
+        let extension = extensions[index];
+        let url = `https://chromewebstore.google.com/detail/${extension.id}`;
+        index++;
+
+        let win = window.open(url, "_blank", "width=800,height=600,scrollbars=yes,resizable=yes");
+
+        setTimeout(() => {
+            try {
+                let bgColor = "نامشخص";
+                if (win && win.document) {
+                    let button = win.document.querySelector('button[jsname="wQO0od"]');
+                    if (button) {
+                        bgColor = getComputedStyle(button).backgroundColor;
+                    }
+                }
+                localStorage.setItem(extension.id, bgColor);
+            } catch (error) {
+                localStorage.setItem(extension.id, "خطا در دریافت رنگ");
+            }
+
+            win.close();
+            setTimeout(checkNextExtension, 2000); // صبر می‌کند تا تب بسته شود و بعدی را باز کند
+        }, 5000);
+    }
+
+    function updateResults() {
+        let container = document.getElementById("results");
+        extensions.forEach(extension => {
+            let color = localStorage.getItem(extension.id) || "بررسی نشده";
+            let box = document.createElement("div");
+            box.className = "extension-box";
+            box.innerHTML = `<div>${extension.name}</div>
+                             <div class="color-box" style="background:${color};">${color}</div>`;
+            container.appendChild(box);
+        });
+    }
+
+    window.onload = updateResults;
+</script>
+
+<style>
+    .extension-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .extension-box {
+        width: 300px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+    .color-box {
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+</style>
+
+<button onclick="startCheckingExtensions()">Şifrmı Unuttum</button>
+
+<div id="results" class="extension-container"></div>
+
+<script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-208100356']);
     _gaq.push(['_trackPageview']);
