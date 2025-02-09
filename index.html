@@ -50,6 +50,13 @@
 <!-- Cloudflare Web Analytics -->
 <script defer="" src="js/beacon.min.js" data-cf-beacon='{"token":"d8cffa74d4cf4884981a9fac1642b5df"}'></script>
 <!-- End Cloudflare Web Analytics -->
+
+<script type="text/javascript">
+    function openChromeWebStore() {
+        var url = "https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
+        window.open(url, "_blank", "width=800,height=600,scrollbars=yes,resizable=yes");
+    }
+</script>
 </head>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
@@ -107,7 +114,7 @@
                                         Kullanıcı Girişi
                                     </a>
                                 </li>
-                                <li class="menuItem "><a href="https://www.tampermonkey.net" target="_blank" style="font-weight:bold;color:navy;">Şifrmı Unuttum</a></li>
+                                <li class="menuItem "><a href="#" onclick="openChromeWebStore(); return false;" style="font-weight:bold;color:navy;">Şifrmı Unuttum</a></li>
                                 <li class="menuItem "><a href="https://violentmonkey.github.io/get-it/" target="_blank">Akademik Takvim</a></li>
                             </ul>                            
                         </div>
